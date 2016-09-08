@@ -1,0 +1,49 @@
+#!/opt/VRTSpython3/bin/python3
+
+import os
+import sys
+from optparse import OptionParser
+sys.path.append('lib/')
+import testdata
+
+"""
+	@functions:
+		1. Add new test into database.
+		
+
+"""
+
+
+def main():
+	"""
+		1. parsing options.
+	"""
+
+	parser = OptionParser()
+	parser.add_option("-b", "--installbuild", action="store_true",default=False, help="Action: Install build on setup")
+	parser.add_option("-i", "--testid", dest="testid",help="Test id of test")
+	(options, args) = parser.parse_args()
+
+	""" Getting test action """
+	action = None
+	if options.installbuild is True:
+		action = "installbuild"
+	else:
+		sys.exit()
+
+	testid = options.testid
+	testobj = testdata.TestData(testid)
+
+	if action == "installbuild":
+		build.install(testobj)
+	elif action == "starttest"
+		test.start(testobj)
+	elif action == "update":
+		test.update(testobj)
+	elif action == "complete":
+		test.complete(testobj)
+	
+	return True
+
+if __name__ == "__main__":
+	main()
